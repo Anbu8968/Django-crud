@@ -10,11 +10,11 @@ from .models import Product
 @api_view(['GET'])
 def apiOverview(request):
     api_urls={
-        'list':'/product-list/',
+        'list':'product-list/',
         'Detailed View':'/product-detail/<int:id>/',
-        'Create':'/product-create',
-        'Update':'/product-update/<int:id>/',
-        'Delete':'/product-delete/<int:id>/'
+        'Create':'product-create/',
+        'Update':'product-update/<int:id>/',
+        'Delete':'product-delete/<int:id>/'
     }
     return Response(api_urls)
 
@@ -34,7 +34,7 @@ def viewProduct(request,pk):
 # @api_view(['POST'])
 # def createProduct(request):
 #     d=request.data['name']
-#     print(d,"namemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
+#     print(d,"name")
 #     serializer=ProductSerializer(data=request.data)
 #     if serializer.is_valid():
 #         serializer.save()

@@ -24,5 +24,6 @@ urlpatterns = [
     path('create/',include('employee.urls')),
     path('api/',include('crud.urls')),
     path('query/',include('crudquery.urls')),
-    path('class/',include('classBased.urls'))
+    path('class/',include('classBased.urls')),
+    path('filters/',include('filters.urls'))
 ]
