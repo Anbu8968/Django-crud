@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 
 from .serializers import ProductSerializer
 from .models import Product
+import csv
+from django.http import HttpResponse
 
 
 @api_view(['GET'])
@@ -14,7 +16,8 @@ def apiOverview(request):
         'Detailed View':'/product-detail/<int:id>/',
         'Create':'product-create/',
         'Update':'product-update/<int:id>/',
-        'Delete':'product-delete/<int:id>/'
+        'Delete':'product-delete/<int:id>/',
+        'export DB to CSV':"export-db-to-csv/"
     }
     return Response(api_urls)
 
@@ -68,3 +71,13 @@ def deleteProduct(request,pk):
     product=Product.objects.get(id=pk)
     product.delete()
     return Response("Items deleted Successfully")
+
+@api_view(['GET'])
+def db_to_csv(request):
+    queryset=Product.objects.all()
+    response=HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+    writer = csv.writer(response)
+    for obj in queryset:
+        writer.writerow([obj.name, obj.category, obj.price,obj.description,obj.stars])
+    return response

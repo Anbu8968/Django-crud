@@ -7,5 +7,6 @@ urlpatterns=[
     path('product-detail/<int:pk>/',views.viewProduct),
     path('product-create/',views.createProduct),
     path('product-update/<int:pk>/',views.updateProduct),
-    path('product-delete/<int:pk>/',views.deleteProduct)
+    path('product-delete/<int:pk>/',views.deleteProduct),
+    path('export-db-to-csv/',views.db_to_csv)
 ]
