@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Person
+from django.http import JsonResponse,HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -51,10 +52,8 @@ def values_by_col(request):
 def get_names(request):
     name=request.data['name']
     person=Person.objects.get(name=name)
-    if person:
-        return Response(person)
-    else:
-        return Response("No data")
+    print(person)
+    return HttpResponse(person)
 
 
 @api_view(['GET'])
