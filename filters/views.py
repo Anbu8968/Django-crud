@@ -26,7 +26,17 @@ def filter_by_awh(request):
     weight=request.data['weight']
     height=request.data['height']
     person=Person.objects.filter(age__gte=age,weight__gte=weight,height__gte=height)
-    return Response(person)
+    data = [
+        {
+            'name': obj.name,
+            'age': obj.age,
+            'weight': obj.weight,
+            'height': obj.height
+        }
+        for obj in person
+    ]
+    print(data,"Anbu")
+    return Response(data)
 
 @api_view(['GET'])
 def values_by_col(request):
@@ -35,7 +45,7 @@ def values_by_col(request):
     if col_values:
         return Response(col_values)
     else:
-        return Response("no data")
+        return Response("no")
 
 @api_view(['GET'])
 def get_names(request):
@@ -67,4 +77,3 @@ def update_person(request):
         return Response("Updated")
     else:
         return Response("no data find")
-

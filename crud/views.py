@@ -78,6 +78,7 @@ def db_to_csv(request):
     response=HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="data.csv"'
     writer = csv.writer(response)
+    writer.writerow(['Name', 'Category', 'Price','Description','stars'])
     for obj in queryset:
         writer.writerow([obj.name, obj.category, obj.price,obj.description,obj.stars])
     return response
