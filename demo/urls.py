@@ -25,5 +25,7 @@ urlpatterns = [
     path('api/',include('crud.urls')),
     path('query/',include('crudquery.urls')),
     path('class/',include('classBased.urls')),
-    path('filters/',include('filters.urls'))
+    path('filters/',include('filters.urls')),
+    path('request/',include("request.urls")),
+    path('auth/',include("authentication.urls"))
 ]
